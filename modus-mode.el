@@ -35,6 +35,7 @@
      ( ,(regexp-opt modus-builtins 'symbols) . font-lock-builtin-face)
      ( ,(regexp-opt modus-constants 'symbols) . font-lock-constant-face))))
 
+;;;###autoload
 (define-derived-mode modus-mode prog-mode "Modusfile"
   "modus-mode is a major mode for editing Modusfiles"
   (setq font-lock-defaults modus-font-lock-defaults)
@@ -55,6 +56,9 @@
   ;; Note that there's no need to manually call `modus-mode-hook'; `define-derived-mode'
   ;; will define `modus-mode' to call it properly right before it exits
   )
+
+;;;###autoload
+(add-to-list 'auto-mode-alist (cons "\\Modusfile$" 'modus-mode))
 
 (provide 'modus-mode)
 
