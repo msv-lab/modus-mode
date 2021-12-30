@@ -31,11 +31,11 @@
      ;; stuff between double quotes
      ("\"\\.\\*\\?" . font-lock-string-face)
      ;; :: , ; :- = . are all special elements
-     ("::\\|,\\|;\\|:-\\|=\\|." . font-lock-keyword-face)
-     ( ,(regexp-opt modus-builtins 'words) . font-lock-builtin-face)
-     ( ,(regexp-opt modus-constants 'words) . font-lock-constant-face))))
+     ("::\\|,\\|;\\|:-\\|=\\|\\." . font-lock-keyword-face)
+     ( ,(regexp-opt modus-builtins 'symbols) . font-lock-builtin-face)
+     ( ,(regexp-opt modus-constants 'symbols) . font-lock-constant-face))))
 
-(define-derived-mode modus-mode fundamental-mode "Modusfile"
+(define-derived-mode modus-mode prog-mode "Modusfile"
   "modus-mode is a major mode for editing Modusfiles"
   (setq font-lock-defaults modus-font-lock-defaults)
 
