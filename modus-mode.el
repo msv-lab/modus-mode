@@ -24,7 +24,7 @@
 (defvar modus-builtins
   '("from" "run" "copy"))
 
-(defvar modus-tab-width 4 "Width of a tab for modus mode.")
+(defvar modus-tab-width nil "Width of a tab for modus mode.")
 
 (defvar modus-font-lock-defaults
   `((
@@ -45,11 +45,12 @@
     (setq tab-width modus-tab-width))
 
   ;; for comments
-  (setq comment-start "#")
+  (setq comment-start "# ")
   (setq comment-end "")
 
-  (modify-syntax-entry ?# "< b" modus-mode-syntax-table)
-  (modify-syntax-entry ?\n "> b" modus-mode-syntax-table)
+  ;; FIXME: comments don't work well with `evil-join'
+  (modify-syntax-entry ?# "<" modus-mode-syntax-table)
+  (modify-syntax-entry ?\n ">" modus-mode-syntax-table)
 
   ;; Note that there's no need to manually call `modus-mode-hook'; `define-derived-mode'
   ;; will define `modus-mode' to call it properly right before it exits
