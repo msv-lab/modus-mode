@@ -22,7 +22,8 @@
 (when t
   (require 'tree-sitter)
   (require 'tree-sitter-hl)
-  (require 'tree-sitter-indent))
+  (require 'tree-sitter-indent)
+  (require 'tree-sitter-langs))
 ;; Vars and functions defined by the above packages:
 (defvar tree-sitter-major-mode-language-alist) ;From `tree-sitter-langs'.
 (declare-function tree-sitter-indent-mode "ext:tree-sitter-indent")
