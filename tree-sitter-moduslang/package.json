@@ -1,0 +1,33 @@
+{
+  "name": "tree-sitter-moduslang",
+  "version": "0.0.1",
+  "description": "",
+  "main": "bindings/node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nan": "^2.15.0",
+    "node-gyp": "^9.0.0"
+  },
+  "devDependencies": {
+    "object-assign": "^4.1.1",
+    "tree-sitter-cli": "^0.20.4"
+  },
+  "tree-sitter": [
+    {
+      "scope": "source.Modusfile",
+      "file-types": [
+        "Modusfile"
+      ],
+      "highlights": [
+        "queries/highlights.scm"
+      ],
+      "locals": [
+        "queries/scope.scm"
+      ]
+    }
+  ]
+}

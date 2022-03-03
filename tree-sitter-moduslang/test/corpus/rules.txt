@@ -1,0 +1,67 @@
+=====
+Rules
+=====
+
+head :- without_vars.
+foo(X, Y) :- bar(X, "test\nblah").
+
+optest :- from(X)
+            ::copy
+            ::set_env(A, B).
+
+disjuncttest :-
+    # This comment will appear in syntax tree.
+    (
+       !branch_1, other_lit
+    ;
+       X = Y
+    )::merge.
+
+---
+
+(source_file
+  (clause_definition
+    (head
+      (literal_identifier))
+    (body
+      (literal_expression (literal_definition (literal_identifier)))))
+  (clause_definition
+    (head
+      (literal_identifier)
+      (term_list
+        (term_definition (variable_identifier))
+        (term_definition (variable_identifier))))
+    (body
+      (literal_expression
+        (literal_definition
+          (literal_identifier)
+          (term_list
+            (term_definition (variable_identifier))
+            (term_definition (constant_term (string_content)
+                                            (constant_escape_sequence)
+                                            (string_content))))))))
+  (clause_definition
+    (head
+      (literal_identifier))
+    (body
+      (literal_expression
+        (literal_definition
+          (literal_identifier)
+          (term_list (term_definition (variable_identifier))))
+        (operator_definition (literal_identifier))
+        (operator_definition
+          (literal_identifier)
+          (term_list (term_definition (variable_identifier))
+                     (term_definition (variable_identifier)))))))
+  (clause_definition
+    (head (literal_identifier))
+    (comment)
+    (body
+      (expression_body
+        (expression_body
+          (expression_body (literal_expression (literal_definition (literal_identifier))))
+          (expression_body (literal_expression (literal_definition (literal_identifier)))))
+        (expression_body
+          (unification (term_definition (variable_identifier))
+                       (term_definition (variable_identifier)))))
+      (operator_definition (literal_identifier)))))

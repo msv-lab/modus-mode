@@ -1,0 +1,46 @@
+=====
+Facts
+=====
+
+fact.
+fact_with_args(X, Y).
+fact_with_constant("this is a constant", lowercase_var).
+constant_string_continuation("echo foo \
+                                   bar").
+f_strings(f"content ${ VARIABLE }      \${escaped}").
+
+---
+
+(source_file
+  (clause_definition
+    (head (literal_identifier)))
+  (clause_definition
+    (head
+      (literal_identifier)
+      (term_list
+        (term_definition (variable_identifier))
+        (term_definition (variable_identifier)))))
+  (clause_definition
+    (head
+      (literal_identifier)
+      (term_list
+        (term_definition (constant_term (string_content)))
+        (term_definition (variable_identifier)))))
+  (clause_definition
+    (head
+      (literal_identifier)
+      (term_list
+        (term_definition (constant_term
+                           (string_content)
+                           (constant_escape_sequence)
+                           (string_content))))))
+  (clause_definition
+    (head
+      (literal_identifier)
+      (term_list
+        (term_definition (f_string_term
+                           (format_string_content)
+                           (interpolation (variable_identifier))
+                           (format_string_content)
+                           (f_string_escape_sequence)
+                           (format_string_content)))))))

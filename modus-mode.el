@@ -5,7 +5,7 @@
 ;; Author: Chris Tomy <https://github.com/thevirtuoso1973>
 ;; Maintainer: Modus Continens
 ;; Created: December 02, 2021
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Keywords: languages modus docker modusfile dockerfile
 ;; Homepage: https://github.com/modus-continens/modus-mode
 ;; Package-Requires: ((emacs "24.3"))
@@ -13,49 +13,66 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; Commentary:
+;;; This was based off the csharp-tree-sitter mode.
 ;; TODO: licence
 ;;
 ;;
 ;;; Code:
 
-(defvar modus-constants
-  '())
+(when t
+  (require 'tree-sitter)
+  (require 'tree-sitter-hl)
+  (require 'tree-sitter-indent))
+;; Vars and functions defined by the above packages:
+(defvar tree-sitter-major-mode-language-alist) ;From `tree-sitter-langs'.
+(declare-function tree-sitter-indent-mode "ext:tree-sitter-indent")
+(declare-function tree-sitter-indent-line "ext:tree-sitter-indent")
+(declare-function tree-sitter-hl-mode "ext:tree-sitter-hl")
+(declare-function tsc-node-end-position "ext:tree-sitter")
+(declare-function tsc-node-start-position "ext:tree-sitter")
+(declare-function tree-sitter-node-at-point "ext:tree-sitter")
 
-(defvar modus-builtins
-  '("from" "run" "copy"))
+(defvar modus-mode-syntax-table)
+(defvar modus-mode-map)
 
-(defvar modus-tab-width nil "Width of a tab for modus mode.")
+(copy-file "./tree-sitter-moduslang/Moduslang.so" (last 'tree-sitter-load-path))
+(copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
 
-(defvar modus-font-lock-defaults
-  `((
-     ;; stuff between double quotes
-     ("\"\\.\\*\\?" . font-lock-string-face)
-     ;; :: , ; :- = . are all special elements
-     ("::\\|,\\|;\\|:-\\|=\\|\\." . font-lock-keyword-face)
-     ( ,(regexp-opt modus-builtins 'symbols) . font-lock-builtin-face)
-     ( ,(regexp-opt modus-constants 'symbols) . font-lock-constant-face))))
+(defvar modus-tree-sitter-mode-map
+  (let ((map (make-sparse-keymap)))
+    map)
+  "Keymap used in modus-mode buffers.")
+
+(defvar modus-tree-sitter-mode-syntax-table
+  (let ((table (make-syntax-table)))
+    (modify-syntax-entry ?@ "_" table)
+    table))
 
 ;;;###autoload
 (define-derived-mode modus-mode prog-mode "Modusfile"
-  "modus-mode is a major mode for editing Modusfiles"
-  (setq font-lock-defaults modus-font-lock-defaults)
+  "Major mode for editing Modusfiles.
+Key bindings:
+\\{modus-tree-sitter-mode-map}"
+  :group 'modus
+  :syntax-table modus-tree-sitter-mode-syntax-table
 
-  ;; when there's an override, use it
-  ;; otherwise it gets the default value
-  (when modus-tab-width
-    (setq tab-width modus-tab-width))
+  (setq-local indent-line-function #'tree-sitter-indent-line)
+  ;; (setq-local beginning-of-defun-function #'csharp-beginning-of-defun)
+  ;; (setq-local end-of-defun-function #'csharp-end-of-defun)
 
-  ;; for comments
-  (setq comment-start "# ")
-  (setq comment-end "")
+  ;; https://github.com/ubolonton/emacs-tree-sitter/issues/84
+  (unless font-lock-defaults
+    (setq font-lock-defaults '(nil)))
+  ;; (setq-local tree-sitter-hl-default-patterns modus-mode-tree-sitter-patterns)
+  ;; Comments
+  ;; (setq-local comment-start "// ")
+  ;; (setq-local comment-start-skip "\\(?://+\\|/\\*+\\)\\s *")
+  ;; (setq-local comment-end "")
 
-  ;; FIXME: comments don't work well with `evil-join'
-  (modify-syntax-entry ?# "<" modus-mode-syntax-table)
-  (modify-syntax-entry ?\n ">" modus-mode-syntax-table)
+  (tree-sitter-hl-mode)
+  (tree-sitter-indent-mode))
 
-  ;; Note that there's no need to manually call `modus-mode-hook'; `define-derived-mode'
-  ;; will define `modus-mode' to call it properly right before it exits
-  )
+(add-to-list 'tree-sitter-major-mode-language-alist '(modus-mode . Moduslang))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist (cons "\\Modusfile$" 'modus-mode))

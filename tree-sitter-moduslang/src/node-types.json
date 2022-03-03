@@ -1,0 +1,372 @@
+[
+  {
+    "type": "body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression_body",
+          "named": true
+        },
+        {
+          "type": "literal_expression",
+          "named": true
+        },
+        {
+          "type": "operator_definition",
+          "named": true
+        },
+        {
+          "type": "unification",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "clause_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "body",
+          "named": true
+        },
+        {
+          "type": "head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "constant_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "constant_escape_sequence",
+          "named": true
+        },
+        {
+          "type": "not_escape_sequence",
+          "named": true
+        },
+        {
+          "type": "string_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expression_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "expression_body",
+          "named": true
+        },
+        {
+          "type": "literal_expression",
+          "named": true
+        },
+        {
+          "type": "operator_definition",
+          "named": true
+        },
+        {
+          "type": "unification",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "f_string_term",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "f_string_escape_sequence",
+          "named": true
+        },
+        {
+          "type": "format_string_content",
+          "named": true
+        },
+        {
+          "type": "interpolation",
+          "named": true
+        },
+        {
+          "type": "not_escape_sequence",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "head",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "literal_identifier",
+          "named": true
+        },
+        {
+          "type": "term_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "interpolation",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "variable_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "literal_identifier",
+          "named": true
+        },
+        {
+          "type": "term_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "literal_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "literal_definition",
+          "named": true
+        },
+        {
+          "type": "operator_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "literal_identifier",
+          "named": true
+        },
+        {
+          "type": "term_list",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "clause_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "term_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "constant_term",
+          "named": true
+        },
+        {
+          "type": "f_string_term",
+          "named": true
+        },
+        {
+          "type": "variable_identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "term_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "term_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "unification",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "term_definition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "!=",
+    "named": false
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "${",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": ":-",
+    "named": false
+  },
+  {
+    "type": "::",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "constant_escape_sequence",
+    "named": true
+  },
+  {
+    "type": "f\"",
+    "named": false
+  },
+  {
+    "type": "f_string_escape_sequence",
+    "named": true
+  },
+  {
+    "type": "format_string_content",
+    "named": true
+  },
+  {
+    "type": "literal_identifier",
+    "named": true
+  },
+  {
+    "type": "not_escape_sequence",
+    "named": true
+  },
+  {
+    "type": "string_content",
+    "named": true
+  },
+  {
+    "type": "variable_identifier",
+    "named": true
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]
