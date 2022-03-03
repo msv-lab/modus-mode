@@ -36,7 +36,7 @@
 (defvar modus-mode-syntax-table)
 (defvar modus-mode-map)
 
-(copy-file "./tree-sitter-moduslang/Moduslang.so" (last 'tree-sitter-load-path))
+(copy-file "./tree-sitter-moduslang/Moduslang.so" "~/.tree-sitter/bin")
 (copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
 
 (defvar modus-tree-sitter-mode-map
