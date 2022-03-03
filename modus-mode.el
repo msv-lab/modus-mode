@@ -80,7 +80,8 @@ Key bindings:
   ;; (setq-local comment-end "")
 
   (tree-sitter-hl-mode)
-  (tree-sitter-indent-mode))
+  ;;(tree-sitter-indent-mode)
+  )
 
 (add-to-list 'tree-sitter-major-mode-language-alist '(modus-mode . Moduslang))
 
