@@ -40,7 +40,7 @@
                "/tmp/Moduslang.so"
                t)
 (mkdir "~/.tree-sitter/bin" t)
-(copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin")
+(copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin" t)
 ;; (copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
 
 (defconst modus-mode-tree-sitter-patterns
