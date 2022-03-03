@@ -46,6 +46,37 @@
 (defconst modus-mode-tree-sitter-patterns
   [
    (comment) @comment
+
+                                        ; Predicate names
+
+   (head (literal_identifier) @function)
+   (literal_definition (literal_identifier) @function.call)
+   (operator_definition (literal_identifier) @method.call)
+
+                                        ; TODO: highlight , and ; and the others.
+
+                                        ; Vars
+
+   (head
+    (term_list
+     (term_definition
+      (variable_identifier) @variable.parameter)))
+
+   (variable_identifier) @variable
+
+                                        ; Keywords
+   [
+    ":-"
+    "."
+    ] @keyword
+
+                                        ; Strings
+
+   (constant_term) @string
+   (constant_escape_sequence) @escape
+
+   (format_string_content) @string
+   (f_string_escape_sequence) @escape
    ])
 
 (defvar modus-tree-sitter-mode-map
@@ -73,7 +104,7 @@ Key bindings:
   ;; https://github.com/ubolonton/emacs-tree-sitter/issues/84
   (unless font-lock-defaults
     (setq font-lock-defaults '(nil)))
-  ;; (setq-local tree-sitter-hl-default-patterns modus-mode-tree-sitter-patterns)
+  (setq-local tree-sitter-hl-default-patterns modus-mode-tree-sitter-patterns)
   ;; Comments
   ;; (setq-local comment-start "// ")
   ;; (setq-local comment-start-skip "\\(?://+\\|/\\*+\\)\\s *")
