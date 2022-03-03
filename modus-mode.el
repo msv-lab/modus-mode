@@ -38,6 +38,7 @@
 
 (url-copy-file "https://raw.githubusercontent.com/modus-continens/modus-mode/main/tree-sitter-moduslang/Moduslang.so"
                "/tmp/Moduslang.so")
+(mkdir "~/.tree-sitter/bin" t)
 (copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin")
 ;; (copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
 
