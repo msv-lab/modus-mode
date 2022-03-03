@@ -36,8 +36,15 @@
 (defvar modus-mode-syntax-table)
 (defvar modus-mode-map)
 
-(copy-file "./tree-sitter-moduslang/Moduslang.so" "~/.tree-sitter/bin")
-(copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
+(url-copy-file "https://raw.githubusercontent.com/modus-continens/modus-mode/main/tree-sitter-moduslang/Moduslang.so"
+               "/tmp/Moduslang.so")
+(copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin")
+;; (copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
+
+(defconst modus-mode-tree-sitter-patterns
+  [
+   (comment) @comment
+   ])
 
 (defvar modus-tree-sitter-mode-map
   (let ((map (make-sparse-keymap)))
