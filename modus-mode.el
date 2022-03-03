@@ -5,7 +5,7 @@
 ;; Author: Chris Tomy <https://github.com/thevirtuoso1973>
 ;; Maintainer: Modus Continens
 ;; Created: December 02, 2021
-;; Version: 0.0.2
+;; Version: 0.1.0
 ;; Keywords: languages modus docker modusfile dockerfile
 ;; Homepage: https://github.com/modus-continens/modus-mode
 ;; Package-Requires: ((emacs "24.3"))
@@ -36,11 +36,16 @@
 (defvar modus-mode-syntax-table)
 (defvar modus-mode-map)
 
-(url-copy-file "https://raw.githubusercontent.com/modus-continens/modus-mode/main/tree-sitter-moduslang/Moduslang.so"
-               "/tmp/Moduslang.so"
-               t)
-(mkdir "~/.tree-sitter/bin" t)
-(copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin/Moduslang.so" t)
+;; If this doesn't work, it'll throw an error later anyway.
+;; Might make debugging annoying but will work offline.
+;; TODO: improve
+(ignore-errors
+  (url-copy-file "https://raw.githubusercontent.com/modus-continens/modus-mode/main/tree-sitter-moduslang/Moduslang.so"
+                 "/tmp/Moduslang.so"
+                 t)
+  (mkdir "~/.tree-sitter/bin" t)
+  (copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin/Moduslang.so" t))
+
 ;; (copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
 
 (defconst modus-mode-tree-sitter-patterns
