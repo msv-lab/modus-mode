@@ -103,6 +103,7 @@ module.exports = grammar({
             'f"',
             repeat(choice(
                 $.interpolation,
+                token.immediate('$'),
                 $.f_string_escape_sequence,
                 $.not_escape_sequence,
                 $.format_string_content,

@@ -7,7 +7,7 @@ fact_with_args(X, Y).
 fact_with_constant("this is a constant", lowercase_var).
 constant_string_continuation("echo foo \
                                    bar").
-f_strings(f"content ${ VARIABLE }      \${escaped}").
+f_strings(f"content ${ VARIABLE }  $    \${escaped}").
 
 ---
 
@@ -41,6 +41,7 @@ f_strings(f"content ${ VARIABLE }      \${escaped}").
         (term_definition (f_string_term
                            (format_string_content)
                            (interpolation (variable_identifier))
+                           (format_string_content)
                            (format_string_content)
                            (f_string_escape_sequence)
                            (format_string_content)))))))

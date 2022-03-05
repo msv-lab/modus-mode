@@ -429,6 +429,13 @@
                 "name": "interpolation"
               },
               {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "STRING",
+                  "value": "$"
+                }
+              },
+              {
                 "type": "SYMBOL",
                 "name": "f_string_escape_sequence"
               },
