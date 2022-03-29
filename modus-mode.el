@@ -45,7 +45,7 @@
                  "/tmp/Moduslang.so"
                  t)
   (mkdir "~/.tree-sitter/bin" t)
-  (copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin/Moduslang.so" t))
+  (copy-file "/tmp/Moduslang.so" "~/.tree-sitter/bin/moduslang.so" t))
 
 ;; (copy-directory "./tree-sitter-moduslang/Moduslang" 'tree-sitter-langs--queries-dir)
 
@@ -93,9 +93,10 @@
   :type 'integer
   :group 'modus)
 
-(defvar tree-sitter-indent-moduslang-scopes
+(defcustom tree-sitter-indent-moduslang-scopes
   '((outdent . (head)))
-  "`tree-sitter-indent' indentation rules.")
+  "`tree-sitter-indent' indentation rules."
+  :type 'sexp)
 
 (defvar modus-tree-sitter-mode-map
   (let ((map (make-sparse-keymap)))
