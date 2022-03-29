@@ -88,7 +88,7 @@
 (defgroup modus-mode-indent nil "Indent lines using Tree-sitter as backend"
   :group 'tree-sitter)
 
-(defcustom modus-mode-indent-offset 4
+(defcustom modus-indent-offset 4
   "Indent offset for modus-tree-sitter-mode."
   :type 'integer
   :group 'modus)
