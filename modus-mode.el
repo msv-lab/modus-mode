@@ -24,6 +24,7 @@
   (require 'tree-sitter-hl)
   (require 'tree-sitter-indent)
   (require 'tree-sitter-langs))
+
 ;; Vars and functions defined by the above packages:
 (defvar tree-sitter-major-mode-language-alist) ;From `tree-sitter-langs'.
 (declare-function tree-sitter-indent-mode "ext:tree-sitter-indent")
@@ -84,6 +85,18 @@
    (f_string_escape_sequence) @escape
    ])
 
+(defgroup modus-mode-indent nil "Indent lines using Tree-sitter as backend"
+  :group 'tree-sitter)
+
+(defcustom modus-tree-sitter-indent-offset 4
+  "Indent offset for modus-tree-sitter-mode."
+  :type 'integer
+  :group 'modus)
+
+(defvar modus-tree-sitter-scopes
+  '((outdent . (head)))
+  "`tree-sitter-indent' indentation rules.")
+
 (defvar modus-tree-sitter-mode-map
   (let ((map (make-sparse-keymap)))
     map)
@@ -116,8 +129,7 @@ Key bindings:
   ;; (setq-local comment-end "")
 
   (tree-sitter-hl-mode)
-  ;;(tree-sitter-indent-mode)
-  )
+  (tree-sitter-indent-mode))
 
 (add-to-list 'tree-sitter-major-mode-language-alist '(modus-mode . Moduslang))
 
