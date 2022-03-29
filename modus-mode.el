@@ -94,7 +94,8 @@
   :group 'modus)
 
 (defcustom tree-sitter-indent-modus-scopes
-  '((outdent . (head)))
+  '((indent-all . (body))
+    (outdent . (head)))
   "`tree-sitter-indent' indentation rules."
   :type 'sexp)
 
