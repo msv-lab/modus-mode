@@ -1,5 +1,5 @@
 module.exports = grammar({
-    name: 'Moduslang',
+    name: 'moduslang',
 
     rules: {
         source_file: $ => repeat($.clause_definition),

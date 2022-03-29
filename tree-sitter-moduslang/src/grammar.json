@@ -1,5 +1,5 @@
 {
-  "name": "Moduslang",
+  "name": "moduslang",
   "rules": {
     "source_file": {
       "type": "REPEAT",
