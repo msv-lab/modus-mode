@@ -131,7 +131,7 @@ Key bindings:
   (tree-sitter-hl-mode)
   (tree-sitter-indent-mode))
 
-(add-to-list 'tree-sitter-major-mode-language-alist '(modus-mode . Moduslang))
+(add-to-list 'tree-sitter-major-mode-language-alist '(modus-mode . moduslang))
 
 ;;;###autoload
 (add-to-list 'auto-mode-alist (cons "\\Modusfile$" 'modus-mode))
