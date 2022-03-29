@@ -93,7 +93,7 @@
   :type 'integer
   :group 'modus)
 
-(defcustom tree-sitter-indent-moduslang-scopes
+(defcustom tree-sitter-indent-modus-scopes
   '((outdent . (head)))
   "`tree-sitter-indent' indentation rules."
   :type 'sexp)
